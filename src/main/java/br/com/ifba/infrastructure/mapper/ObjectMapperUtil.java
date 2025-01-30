@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Component // Indica que esta classe é um componente gerenciado pelo Spring.
 public class ObjectMapperUtil {
-    private static final ObjectMapper MODEL_MAPPER;
+    private static final ModelMapper MODEL_MAPPER;
 
     static {
         MODEL_MAPPER = new ModelMapper(); // Inicializa a instância do ModelMapper no bloco estático.

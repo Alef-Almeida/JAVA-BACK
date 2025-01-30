@@ -1,18 +1,16 @@
 package br.com.ifba.infrastructure.model;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 
-@Entity
+@MappedSuperclass
 @Data // Anotação do Lombok para gerar getters, setters, toString, etc.
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // ID único do usuário (gerado automaticamente)
-    private String name; // Nome do usuário
-    private String email; // Email do usuário
-    private String password; // Senha do usuário
+
 }

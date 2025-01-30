@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public User save(User user) {
@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService {
     // Método para buscar todos os usuários do banco de dados
     @Override
     public List<User> findAll() {
-        // Chama o método findAll do UserRepository e retorna a lista de usuários
         return userRepository.findAll();
     }
 
@@ -45,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
     @Override // Sobrescreve o método da interface ou classe pai
     public User findById(Long id) { // Método para buscar um usuário pelo ID
-        return userRepository.findById(id) // Busca o usuário no repositório pelo ID
+        return (User) userRepository.findById(id) // Busca o usuário no repositório pelo ID
                 .orElseThrow(() -> new BusinessException("Not found User")); // Lança uma exceção caso o usuário não seja encontrado
     }
 }
