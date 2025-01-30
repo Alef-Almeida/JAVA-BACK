@@ -1,4 +1,4 @@
-package br.com.ifba.model;
+package br.com.ifba.infrastructure.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
