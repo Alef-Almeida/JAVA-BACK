@@ -14,9 +14,14 @@
     <name>projetowebback</name>
     <description>projetowebback</description>
     <properties>
-        <java.version>23</java.version> <!-- Alterei para Java 17, que é mais compatível com Spring Boot 3.x -->
+        <java.version>23</java.version>
     </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
         <!-- Spring Boot Starter Web (para controllers e endpoints HTTP) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,6 +64,10 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
     </dependencies>

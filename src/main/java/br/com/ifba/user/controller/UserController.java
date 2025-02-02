@@ -2,8 +2,9 @@ package br.com.ifba.user.controller;
 
 import br.com.ifba.infrastructure.mapper.ObjectMapperUtil;
 import br.com.ifba.user.dto.UserGetResponseDto;
-import br.com.ifba.user.dto.UserPostResponseDto;
+import br.com.ifba.user.dto.UserPostRequestDto;
 import br.com.ifba.user.entity.User;
+import jakarta.validation.Valid;
 import br.com.ifba.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class UserController {
     // Define o endpoint POST em "/users/save" para salvar um usuário
     // Especifica que a requisição deve consumir JSON
     @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> save(@RequestBody UserPostResponseDto userPostResponseDto) {
+    public ResponseEntity<?> save(@RequestBody @Valid UserPostRequestDto userPostResponseDto) {
         // Retorna a resposta com o status HTTP 201 (Created) e o objeto salvo
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(objectMapperUtil.map(userService.save(

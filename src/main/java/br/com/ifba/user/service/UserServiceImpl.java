@@ -3,6 +3,7 @@ package br.com.ifba.user.service;
 import br.com.ifba.infrastructure.exception.BusinessException;
 import br.com.ifba.user.entity.User;
 import br.com.ifba.user.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public User save(User user) {
         // Chama o método save do UserRepository e retorna o usuário salvo
         return userRepository.save(user);
@@ -30,6 +32,7 @@ public class UserServiceImpl implements UserService {
 
     // Implementação do método para excluir um usuário com base no ID
     @Override
+    @Transactional
     public void delete(Long id) {
         // Chama o repositório para excluir o usuário pelo ID
         userRepository.deleteById(id);
@@ -37,6 +40,7 @@ public class UserServiceImpl implements UserService {
 
     // Implementação do método para atualizar um usuário
     @Override
+    @Transactional
     public User update(User user) {
         // Chama o repositório para salvar as alterações feitas no usuário
         return userRepository.save(user);
