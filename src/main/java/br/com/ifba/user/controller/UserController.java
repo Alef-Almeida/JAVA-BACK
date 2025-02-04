@@ -7,6 +7,7 @@ import br.com.ifba.user.entity.User;
 import jakarta.validation.Valid;
 import br.com.ifba.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,12 +39,12 @@ public class UserController {
     // Define o endpoint GET em "/users/findall" para buscar todos os usuários
     // Especifica que a resposta será no formato JSON
     @GetMapping(path = "/findall", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<?> findAll(Pageable pageable) {
         // Retorna a resposta com o status HTTP 200 (OK) e a lista de usuários
         return ResponseEntity.status(HttpStatus.OK)
-                .body(objectMapperUtil.mapAll(
-                        this.userService.findAll(),
-                        UserGetResponseDto.class));
+                .body(this.userService.findAll(pageable)
+                        .map(c -> objectMapperUtil.map(c, UserGetResponseDto.class)));
+
     }
 
     // Mapeia a rota DELETE para excluir um recurso com base no ID fornecido

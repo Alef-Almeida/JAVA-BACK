@@ -2,6 +2,10 @@ package br.com.ifba.user.service;
 
 import java.util.List;
 import br.com.ifba.user.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
+
 
 // Interface que define os métodos do serviço para manipulação de objetos User
 public interface UserService {
@@ -10,7 +14,7 @@ public interface UserService {
     public User save(User user);
 
     // Método para buscar todos os objetos User no sistema
-    public List<User> findAll();
+    public Page<User> findAll(Pageable pageable);
 
     // Método para excluir um objeto User com base no ID fornecido
     public void delete(Long id);

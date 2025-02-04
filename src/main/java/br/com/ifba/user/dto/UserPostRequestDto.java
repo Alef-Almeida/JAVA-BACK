@@ -25,7 +25,7 @@ public class UserPostRequestDto {
 
     @JsonProperty(value = "email")
     @Email(message = "email invalido")
-    // Define o nome do campo na requisição JSON como "email".
+    // Define o nome do campo na requisição JSON como "e-mail".
     private String email;
 
     @JsonProperty(value = "password")

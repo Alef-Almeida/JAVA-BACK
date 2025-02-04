@@ -5,7 +5,13 @@ import br.com.ifba.user.entity.User;
 import br.com.ifba.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -26,8 +32,8 @@ public class UserServiceImpl implements UserService {
 
     // Método para buscar todos os usuários do banco de dados
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public Page<User> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     // Implementação do método para excluir um usuário com base no ID
