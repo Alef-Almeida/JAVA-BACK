@@ -18,10 +18,10 @@ public class UserPostRequestDto {
     @NotBlank(message = "O nome não pode ser vazio!")
     private String name;
 
-    @JsonProperty(value = "username")
+    @JsonProperty(value = "login")
     // Define o nome do campo na requisição JSON como "username".
     @Size(min = 4, max = 30, message = "Minimo 4 Caracteres e Maximo 30")
-    private String username;
+    private String login;
 
     @JsonProperty(value = "email")
     @Email(message = "email invalido")
@@ -32,4 +32,5 @@ public class UserPostRequestDto {
     @NotBlank(message = "A senha nao pode ser vazia!")
     // Define o nome do campo na requisição JSON como "password".
     private String password;
+
 }

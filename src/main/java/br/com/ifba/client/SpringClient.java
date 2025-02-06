@@ -30,7 +30,7 @@ public class SpringClient {
         UserPostRequestDto usuarioPostRequestDto = new UserPostRequestDto();
         usuarioPostRequestDto.setEmail("email@email.com");
         usuarioPostRequestDto.setPassword("password");
-        usuarioPostRequestDto.setUsername("username");
+        usuarioPostRequestDto.setLogin("login");
         usuarioPostRequestDto.setName("name");
 
         // Realiza uma requisição POST para salvar um novo usuário na API.

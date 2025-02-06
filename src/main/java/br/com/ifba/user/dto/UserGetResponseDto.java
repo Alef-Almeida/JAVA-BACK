@@ -17,7 +17,7 @@ public class UserGetResponseDto { // Classe DTO usada para representar os dados 
 
     @JsonProperty(value = "username")
     // Define o nome do campo na resposta JSON como "username".
-    private String username;
+    private String login;
 
     @JsonProperty(value = "email")
     // Define o nome do campo na resposta JSON como "email".
