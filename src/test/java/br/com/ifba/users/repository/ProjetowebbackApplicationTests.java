@@ -1,4 +1,4 @@
-package br.com.ifba;
+package br.com.ifba.users.repository;
 
 public class ProjetowebbackApplicationTests {
 }
