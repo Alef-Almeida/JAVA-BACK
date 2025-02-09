@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
-import java.util.List;
+
+import java.util.Optional;
 
 // Indica que esta classe é um serviço na camada de negócio e será gerenciada pelo Spring
 @Service
@@ -17,6 +18,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
 
     @Override
     @Transactional
@@ -51,5 +53,15 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) { // Método para buscar um usuário pelo ID
         return (User) userRepository.findById(id) // Busca o usuário no repositório pelo ID
                 .orElseThrow(() -> new BusinessException("Not found User")); // Lança uma exceção caso o usuário não seja encontrado
+    }
+    // Função de login
+    public User login(String login, String password) {
+        // Verifica se existe um usuário com o login e a senha
+        Optional<User> user = userRepository.findByLogin(login);
+
+        if (user.isPresent() && user.get().getPassword().equals(password)) {
+            return user.orElse(null); // Usuário autenticado
+        }
+        return null; // Senha ou login inválidos
     }
 }

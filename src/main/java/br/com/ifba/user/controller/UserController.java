@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:5173")
 // Indica que esta classe é um controlador REST
 @RestController
 // Define o caminho base para os endpoints deste controlador como "/users"
@@ -34,6 +35,21 @@ public class UserController {
                 .body(objectMapperUtil.map(userService.save(
                                 (objectMapperUtil.map(userPostResponseDto, User.class))),
                         UserGetResponseDto.class));
+    }
+    // Endpoint de login
+    @PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> login(@RequestBody UserPostRequestDto UserPostRequestDto) {
+        // Autentica o usuário com o login e senha fornecidos
+        User user = userService.login(UserPostRequestDto.getLogin(), UserPostRequestDto.getPassword());
+
+        if (user != null) {
+            // Se o login for bem-sucedido, retorna o usuário ou um token
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            // Se o login falhar, retorna erro
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Usuário ou senha inválidos.");
+        }
     }
 
     // Define o endpoint GET em "/users/findall" para buscar todos os usuários
